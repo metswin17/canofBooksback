@@ -25,12 +25,13 @@ app.get('/books', async (req, res) => {
   res.json(books);
 });
 
-app.post('/books', async (req, res) => {
+app.post("/books", async (req, res) => {
+
   try {
     const newBook = await Book.create(req.body);
     res.status(201).json(newBook);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
