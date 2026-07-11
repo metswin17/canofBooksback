@@ -27,6 +27,8 @@ app.get('/books', async (req, res) => {
 
 app.post("/books", async (req, res) => {
 
+  console.log(req.body);
+  
   try {
     const newBook = await Book.create(req.body);
     res.status(201).json(newBook);
