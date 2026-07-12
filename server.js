@@ -38,11 +38,13 @@ app.post("/books", async (req, res) => {
 });
 
 app.delete("/books/:id", async (req, res) => {
-  await Book.findByIdAndDelete(req.params.id);
-
-  res.send("Book deleted");
+  try {
+    await Book.findByIdAndDelete(req.params.id);
+    res.send("Book deleted");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
-
 
 
 app.listen(PORT, () => {
